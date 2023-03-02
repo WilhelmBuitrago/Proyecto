@@ -1,5 +1,6 @@
-from logic import *
 from logica import *
+from probability import *
+
 class Node():
     def __init__(self, prenda, padre):
         self.prenda = prenda
@@ -7,11 +8,12 @@ class Node():
         self.accion = prenda.tipo
 
 class Prenda():
-    def __init__(self, tipo, estilo, color, nombre):
+    def __init__(self, tipo, estilo, color, sub_tipo, nombre):
         self.color = color
         self.estilo = estilo
         self.tipo = tipo
         self.nombre = nombre
+        self.sub_tipo = sub_tipo
 
 class Pintas():
     def __init__(self):
@@ -23,24 +25,34 @@ class Pintas():
     def mostar(self):
         for contador, pinta in enumerate(self.pintas):
             lista = []
-            for j in pinta:
-                lista.append(j.nombre)
-            print(f"Pinta numero {contador+1}.\n{lista[3]}, {lista[2]}, {lista[1]}, {lista[0]}\n")
+            for prenda in pinta.prendas:
+                lista.append(prenda.nombre)
+            print(f"Pinta numero {contador+1}.\n{lista[0]}, {lista[1]}, {lista[2]}, {lista[3]}\n")
+
+    def get_first(self):
+        for i in self.pintas:
+            return i
 
 class Pinta():
     def __init__(self):
         self.prendas = []
         self.tipos = []
+        self.prob = 0
     
     def add_prenda(self, prenda):
         self.prendas.append(prenda)
         self.tipos.append(prenda.tipo)
+    
+    def add_prob(self, prob):
+        self.prob = prob
 
-    def mostrar(self, estilo):
-        print(f"Tu pinta con estilo {estilo}, tiene: ")
+    def mostrar(self):
         for prenda in self.prendas:
             print(prenda.nombre)
 
+    def ordenar(self):
+        self.prendas.reverse()
+        
     def tipo_en_pinta(self, tipo):
         x = False
         if tipo in self.tipos:
@@ -93,44 +105,31 @@ class Cola(Frontera):
 
 class Combination2():
 
-    def __init__(self, estilo):
+    def __init__(self, estilo, viento, nubosidad, lluvia):
         # formato: tipo, estilo, color, nombre 
-        with open('C:\\Users\\wilhe\\OneDrive\\Escritorio\\Nueva carpeta (4)\\Prendas.txt') as file:
+        with open('Prendas.txt') as file:
             contenido = file.read()
         contenido = contenido.splitlines()  
         
         self.clothes = []
         self.estilo_deseado = estilo
+        self.viento = viento
+        self.nubosidad = nubosidad
+        self.lluvia = lluvia       
         
-        
-        
-        
-        #print(formal)
         for i in contenido:
-            tipo, estilo, color, nombre = i.split(", ")
-            self.clothes.append(Prenda(tipo, estilo, color, nombre))
+            tipo, estilo, color, sub_tipo, nombre = i.split(", ")
+            self.clothes.append(Prenda(tipo, estilo, color, sub_tipo, nombre))
 
-        self.clothes = logica_ropa(self.clothes,self.estilo_deseado)
-        
-        """
-        conocimiento = And(estilo_actual,estil)
-        
-        for j in self.clothes:
-            estilo_actual = Symbol(j.estilo)
-            if model_check(conocimiento,estilo_actual):
-                print(j.nombre)
-        """    
-            
-                
-            
-    
+        self.clothes = logica_ropa(self.clothes, self.estilo_deseado)
+
     def modelo_trans(self, tipo):
         
         acciones = {
             None : "cabeza",
             "cabeza":"torso",
             "torso":"piernas",
-            "piernas":"pies"
+            "piernas":"zapatos"
         }
         
         tipo_sig = acciones[tipo]
@@ -139,9 +138,6 @@ class Combination2():
         for prenda in self.clothes:
             if prenda.estilo == self.estilo_deseado and prenda.tipo == tipo_sig:
                 prendas_posibles.append(prenda)
-
-        #for i in prendas_posibles:
-        #    print(i.nombre)
 
         return prendas_posibles
     
@@ -167,28 +163,55 @@ class Combination2():
             #print(f"extrajo: {nodo.prenda.nombre}")
             tipo_prenda_actual = nodo.prenda.tipo
 
-            # Si el tipo es diferente de pies se hallan las prendas disponibles y se introducen a la frontera
-            if tipo_prenda_actual != "pies":
+            # Si el tipo es diferente de zapatos se hallan las prendas disponibles y se introducen a la frontera
+            if tipo_prenda_actual != "zapatos":
                 prendas_posibles = self.modelo_trans(tipo_prenda_actual)
                 for i in prendas_posibles:
                     frontera.add(Node(i, nodo))
-                    #print(f"añadio {i.nombre}")
+                    #print(f"añadio: {i.nombre}")
 
-            # En caso de que no significa que llegó a los pies, con esto se guarda la combinacion actual como una lista en pintas
+            # En caso de que no significa que llegó a los zapatos, con esto se guarda la combinacion actual como una lista en pintas
             else:
                 nodo2 = nodo
-                lista = []
+                pint = Pinta()
                 for i in range(4):
-                    lista.append(nodo2.prenda)                    
+                    pint.add_prenda(nodo2.prenda)                    
                     nodo2 = nodo2.padre
-                pintas.add_pinta(lista)
+                pint.ordenar()
+                pintas.add_pinta(pint)
 
             #if not pinta.tipo_en_pinta(nodo.prenda.tipo):
             #    pinta.add_prenda(nodo.prenda)
-        pintas.mostar()
+        
+        #pintas.mostar()
+        
+        best = pintas.get_first()
 
+        for contador, pinta in enumerate(pintas.pintas):
+            lista = []
+            for prenda in pinta.prendas:
+                lista.append(prenda.sub_tipo)
+            prob = probability(self.viento, self.nubosidad, self.lluvia, lista)
+            #print(f"probabilidad de la pinta {contador+1}: {prob}")
+            pinta.add_prob(prob)
+            
+            if pinta.prob > best.prob:
+                best = pinta
+        
+        print(f"la mejor pinta, con un {best.prob*100:.0f}% tiene:")
+        best.mostrar()
+
+
+        
             
         #pinta.mostrar(self.estilo_deseado) 
 
-comb = Combination2("formal")
+#viento, nubosidad, lluvia, pinta):
+
+estilo_deseado = "formal"
+viento = {"vientos": "no"}
+nubosidad = {"nubosidad": "no"}
+lluvia = {"lluvia": "si"}
+
+comb = Combination2(estilo_deseado, viento, nubosidad, lluvia)
 comb.solve()
