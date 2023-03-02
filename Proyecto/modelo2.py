@@ -144,16 +144,24 @@ ppa = Node(ConditionalProbabilityTable([
 
 # Nodo de pinta completa adecuada esta condicionada por cabeza - torso adecuados y piernas - piesadecuados
 pinta = Node(ConditionalProbabilityTable([
-    ["si","si","si", 0.9],
-    ["si","si","no", 0.1],
-    ["si","no","si", 0.3],
-    ["si","no","no", 0.7],
-    ["no","si","si", 0.2],
-    ["no","si","no", 0.8],
-    ["no","no","si", 0.1],
-    ["no","no","no", 0.9]
+    ["si","si","si","si", 0.9],
+    ["si","si","si","no", 0.1],
+    ["si","si","no","si", 0.3],
+    ["si","si","no","no", 0.7],
+    ["si","no","si","si", 0.2],
+    ["si","no","si","no", 0.8],
+    ["si","no","no","si", 0.1],
+    ["si","no","no","no", 0.9],
+    ["no","si","si","si", 0.6],
+    ["no","si","si","no", 0.4],
+    ["no","si","no","si", 0.3],
+    ["no","si","no","no", 0.7],
+    ["no","no","si","si", 0.8],
+    ["no","no","si","no", 0.2],
+    ["no","no","no","si", 0.2],
+    ["no","no","no","no", 0.8]
     
-],[cta.distribution, ppa.distribution]),name="pinta")
+],[lluvia.distribution, cta.distribution, ppa.distribution]),name="pinta")
 
 # Creamos una Red Bayesiana y añadimos estados
 modelo = BayesianNetwork()
@@ -171,8 +179,6 @@ modelo.add_state(ppa)
 modelo.add_state(pinta)
 
 # Añadimos bordes que conecten nodos
-"""modelo.add_edge(vientos, humedad)
-modelo.add_edge(humedad, nubosidad)"""
 modelo.add_edge(vientos, nubosidad)
 modelo.add_edge(nubosidad, lluvia)
 modelo.add_edge(lluvia, cabeza)
@@ -185,6 +191,7 @@ modelo.add_edge(piernas, ppa)
 modelo.add_edge(pies, ppa)
 modelo.add_edge(cta, pinta)
 modelo.add_edge(ppa, pinta)
+modelo.add_edge(lluvia, pinta)
 
 #Modelo Final
 modelo.bake()
