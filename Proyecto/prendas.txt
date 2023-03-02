@@ -1,0 +1,40 @@
+cabeza, casual, marron, gorra, gorra
+cabeza, formal, negro, gorro, gorro
+cabeza, deportivo, gris, top hat, sombrero
+cabeza, semiformal, azul, peinado, nada
+cabeza, casual, rojo, gorra, gorra
+cabeza, formal, verde, gorro, gorro
+cabeza, deportivo, rosa, top hat, sombrero
+cabeza, semiformal, naranja, peinado, nada
+cabeza, casual, violeta, gorra, gorra
+cabeza, formal, amarillo, gorro, gorro
+torso, casual, marron, sueter, sueter
+torso, formal, negro, camisa, camisa
+torso, deportivo, gris, chaqueta, chaqueta
+torso, semiformal, azul, sueter polo, sueter
+torso, casual, rojo, sueter, sueter
+torso, formal, verde, camisa, camisa
+torso, deportivo, rosa, chaqueta, chaqueta
+torso, semiformal, naranja, sueter polo, sueter
+torso, casual, violeta, sueter, sueter
+torso, semiformal, amarillo, camisa, camisa
+piernas, casual, marron, yoger, sudadera
+piernas, formal, negro, pantalon de lino, pantalon
+piernas, deportivo, gris, pantaloneta, pantaloneta
+piernas, semiformal, azul, jeans, bermuda
+piernas, casual, rojo, yoger, sudadera
+piernas, formal, verde, pantalon de lino, pantalon
+piernas, deportivo, rosa, pantaloneta, pantaloneta
+piernas, semiformal, naranja, jeans, bermuda
+piernas, casual, violeta, yoger, sudadera
+piernas, formal, amarillo, pantalon de lino, pantalon
+zapatos, casual, marron, tennis, chanclas
+zapatos, formal, negro, clasico, zapatos clasic
+zapatos, deportivo, gris, tennis, tenis
+zapatos, semiformal, azul, clasico, zapatos clasic
+zapatos, casual, rojo, tennis, chanclas
+zapatos, formal, verde, clasicos, zapatos clasic
+zapatos, deportivo, rosa, tennis, tenis
+zapatos, semiformal, naranja, clasicos, zapatos clasic
+zapatos, casual, violeta, tennis, chanclas
+zapatos, formal, marron, clasicos, zapatos clasic
