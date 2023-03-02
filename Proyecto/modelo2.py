@@ -9,14 +9,6 @@ vientos = Node(DiscreteDistribution({
     "no": 0.6
 }), name="vientos")
 
-# Nodo de humedad esta condicionado por los vientos
-"""humedad = Node(ConditionalProbabilityTable([
-    ["si","si",0.6],
-    ["si","no",0.4],
-    ["no","si",0.3],
-    ["no","no",0.7]
-],[vientos.distribution]), name="humedad")"""
-
 # nodo nubosidad esta condicionado por la humedad
 nubosidad = Node(ConditionalProbabilityTable([
     ["si","si", 0.7],
@@ -37,52 +29,34 @@ lluvia = Node(ConditionalProbabilityTable([
 #############################################################
 
 # Nodo cabeza esta condicionado por la lluvia
-cabeza = Node(ConditionalProbabilityTable([
-    ["si","sombrero", 0.6],
-    ["si","gorra", 0.3],
-    ["si","gorro", 0.05],
-    ["si","nada", 0.05],
-    ["no","sombrero", 0.2],
-    ["no","gorra", 0.3],
-    ["no","gorro", 0.2],
-    ["no","nada", 0.3],
-    
-],[lluvia.distribution]),name="cabeza")
+cabeza = Node(DiscreteDistribution({
+    "gorro": 0.2,
+    "gorra": 0.3,
+    "sombrero": 0.2,
+    "nada": 0.3
+}), name="cabeza")
 
 # Nodo torso esta condicionada por la lluvia
-torso = Node(ConditionalProbabilityTable([
-    ["si","camisa", 0.1],
-    ["si","sueter", 0.1],
-    ["si","chaqueta", 0.8],
-    ["no","camisa", 0.4],
-    ["no","sueter", 0.4],
-    ["no","chaqueta", 0.2],
-    
-],[lluvia.distribution]),name="torso")
+torso = Node(DiscreteDistribution({
+    "camisa": 0.5,
+    "sueter": 0.3,
+    "chaqueta": 0.2
+}), name="torso")
 
 # Nodo piernas esta condicionada por la lluvia
-piernas = Node(ConditionalProbabilityTable([
-    ["si","pantalon", 0.7],
-    ["si","sudadera", 0.2],
-    ["si","pantaloneta", 0.05],
-    ["si","bermuda", 0.05],
-    ["no","pantalon", 0.3],
-    ["no","sudadera", 0.3],
-    ["no","pantaloneta", 0.2],
-    ["no","bermuda", 0.2],
-    
-],[lluvia.distribution]),name="piernas")
+piernas = Node(DiscreteDistribution({
+    "pantalon": 0.4,
+    "sudadera": 0.2,
+    "pantaloneta": 0.2,
+    "bermuda": 0.4
+}), name="piernas")
 
 # Nodo pies esta condicionada por la lluvia
-pies = Node(ConditionalProbabilityTable([
-    ["si","clasicos", 0.4],
-    ["si","chanclas", 0.05],
-    ["si","tenis", 0.55],
-    ["no","clasicos", 0.33],
-    ["no","chanclas", 0.33],
-    ["no","tenis", 0.34]
-    
-],[lluvia.distribution]),name="pies")
+pies = Node(DiscreteDistribution({
+    "clasicos": 0.4,
+    "chanclas": 0.2,
+    "tenis": 0.4
+}), name="torso")
 
 # Nodo de cabeza y torso adecuados esta condicionada por cabeza y torso
 cta = Node(ConditionalProbabilityTable([
@@ -166,7 +140,6 @@ pinta = Node(ConditionalProbabilityTable([
 # Creamos una Red Bayesiana y añadimos estados
 modelo = BayesianNetwork()
 modelo.add_state(vientos) 
-"""modelo.add_state(humedad)"""
 modelo.add_state(nubosidad)
 modelo.add_state(lluvia)
 modelo.add_state(cabeza) 
@@ -181,10 +154,6 @@ modelo.add_state(pinta)
 # Añadimos bordes que conecten nodos
 modelo.add_edge(vientos, nubosidad)
 modelo.add_edge(nubosidad, lluvia)
-modelo.add_edge(lluvia, cabeza)
-modelo.add_edge(lluvia, torso)
-modelo.add_edge(lluvia, piernas)
-modelo.add_edge(lluvia, pies)
 modelo.add_edge(cabeza, cta)
 modelo.add_edge(torso, cta)
 modelo.add_edge(piernas, ppa)
