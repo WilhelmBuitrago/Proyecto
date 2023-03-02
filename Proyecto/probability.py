@@ -25,9 +25,8 @@ def probability(viento, nubosidad, lluvia, pinta):
     # Visualizemos las predicciones para cada nodo
     for nodo, prediccion in zip(modelo.states, predicciones):
         if isinstance(prediccion, str):
-            print(f"{nodo.name}: {prediccion}")
+            pass
         else:
-            print(f"{nodo.name}")
             for valor, probabilidad in prediccion.parameters[0].items(): 
                 if nodo.name == "pinta":
                      if valor == "si":
