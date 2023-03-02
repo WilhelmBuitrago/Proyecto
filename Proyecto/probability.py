@@ -29,7 +29,10 @@ def probability(viento, nubosidad, lluvia, pinta):
         else:
             print(f"{nodo.name}")
             for valor, probabilidad in prediccion.parameters[0].items(): 
-                print(f"       {valor}: {probabilidad:.2f}")
+                if nodo.name == "pinta":
+                     if valor == "si":
+                         pin = probabilidad
+    return pin
 
 vient = {"vientos": "si"}
 humed = {"humedad": "si"}
