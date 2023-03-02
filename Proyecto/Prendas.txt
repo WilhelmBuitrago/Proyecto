@@ -1,13 +1,40 @@
-cabeza, casual, azul, beanie
-cabeza, formal, negro, top hat
-cabeza, casual, blanco, gorra coleta
-torso, semiformal, rojo, chaqueta roja
-torso, formal, gris, saco gris
-torso, casual, negro, camiseta negra
-piernas, casual, azul, blue jean
-piernas, casual, negro, jean negro
-piernas, casual, blanco, bermuda blanca
-piernas, formal, negro, pantalon de lino
-zapatos, casual, verde, chanclas verdes
-zapatos, formal, negro, tennis negros
-zapatos, semiformal, rojo, jordans
+cabeza, casual, marron, gorra, gorra marron
+cabeza, formal, negro, gorro, gorro negro
+cabeza, formal, gris, sombrero, top hat
+cabeza, semiformal, azul, nada, peinado
+cabeza, casual, rojo, gorra, gorra roja
+cabeza, formal, verde, gorro, gorro verde
+cabeza, deportivo, rosa, sombrero, top hat rosa
+cabeza, semiformal, naranja, nada, peinado 
+cabeza, casual, violeta, gorra, gorra violeta
+cabeza, formal, amarillo, gorro, gorro amarillo
+torso, casual, marron, sueter, sueter marron
+torso, formal, negro, camisa, camisa negra
+torso, deportivo, gris, chaqueta, chaqueta gris
+torso, semiformal, azul, sueter, sueter polo azul
+torso, casual, rojo, sueter, sueter rojo
+torso, formal, verde, camisa, camisa verde
+torso, deportivo, rosa, chaqueta, chaqueta rosa
+torso, semiformal, naranja, sueter, sueter naranja
+torso, casual, violeta, sueter, sueter violeta
+torso, semiformal, amarillo, camisa, camisa amarilla
+piernas, casual, marron, sudadera, yoger
+piernas, formal, negro, pantalon, pantalon de lino
+piernas, deportivo, gris, pantaloneta, pantaloneta gris
+piernas, semiformal, azul, bermuda, jeans
+piernas, casual, rojo, sudadera, yoger rojo
+piernas, formal, verde, pantalon, pantalon de lino
+piernas, deportivo, rosa, pantaloneta, pantaloneta rosa
+piernas, semiformal, naranja, bermuda, jean naranja
+piernas, casual, violeta, sudadera, yoger
+piernas, formal, amarillo, pantalon, pantalon de lino
+zapatos, casual, marron, chanclas, crocs marrones
+zapatos, formal, negro, clasicos, negros clasico
+zapatos, deportivo, gris, tenis, tennis
+zapatos, semiformal, azul, clasicos, azules clasicos
+zapatos, casual, rojo, chanclas, crocs
+zapatos, formal, verde, clasicos, verdes clasicos
+zapatos, deportivo, rosa, tenis, tennis rosa
+zapatos, semiformal, naranja, clasicos, naranjas clasicos
+zapatos, casual, violeta, chanclas, crocs violetas
+zapatos, formal, marron, clasicos, clasicos marrones
