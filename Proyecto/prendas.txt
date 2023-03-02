@@ -29,12 +29,12 @@ piernas, semiformal, naranja, bermuda, jean naranja
 piernas, casual, violeta, sudadera, yoger
 piernas, formal, amarillo, pantalon, pantalon de lino
 zapatos, casual, marron, chanclas, crocs marrones
-zapatos, formal, negro, zapatos clasic, negros clasico
+zapatos, formal, negro, clasicos, negros clasico
 zapatos, deportivo, gris, tenis, tennis
-zapatos, semiformal, azul, zapatos clasic, azules clasicos
+zapatos, semiformal, azul, clasicos, azules clasicos
 zapatos, casual, rojo, chanclas, crocs
-zapatos, formal, verde, zapatos clasic, verdes clasicos
+zapatos, formal, verde, clasicos, verdes clasicos
 zapatos, deportivo, rosa, tenis, tennis rosa
-zapatos, semiformal, naranja, zapatos clasic, naranjas clasicos
+zapatos, semiformal, naranja, clasicos, naranjas clasicos
 zapatos, casual, violeta, chanclas, crocs violetas
-zapatos, formal, marron, zapatos clasic, clasicos marrones
+zapatos, formal, marron, clasicos, clasicos marrones
