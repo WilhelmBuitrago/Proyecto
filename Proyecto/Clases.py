@@ -146,7 +146,7 @@ class Combination2():
         prendas_posibles = []
 
         for prenda in self.clothes:
-            if prenda.estilo == self.estilo_deseado and prenda.tipo == tipo_sig:
+            if prenda.tipo == tipo_sig:
                 prendas_posibles.append(prenda)
 
         return prendas_posibles
@@ -154,7 +154,6 @@ class Combination2():
     def solve(self):
         conjun = []
         frontera = Pila()
-        #pinta = Pinta()
         pintas = Pintas()
         
         # Usar el modelo de transicion para hallar las cabezas que cumplan con el tipo deseado
