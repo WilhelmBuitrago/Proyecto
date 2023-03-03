@@ -41,7 +41,7 @@ def probability(viento, nubosidad, lluvia, pinta):
                 if nodo.name == "pinta":
                      if valor == "si":
                          pin = probabilidad
- return pin
+    return pin
 
 vient = {"vientos": "si"}
 humed = {"humedad": "si"}
