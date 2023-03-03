@@ -159,11 +159,8 @@ def logica_colores(cabeza,torso,piernas,zapatos,prenda):
                                 return pintaf(prenda.prendas[0],prenda.prendas[1],prenda.prendas[2],prenda.prendas[3])
 
     if (k or l or s):
-        print("Si")
         if (m or n or o):
-            print("Si2")
             if (i or j or p or g or h or r):
-                print("Si3")
                 return pintaf(prenda.prendas[0],prenda.prendas[1],prenda.prendas[2],prenda.prendas[3])
                 
 
