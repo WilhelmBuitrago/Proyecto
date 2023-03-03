@@ -121,7 +121,7 @@ class Combination2():
             tipo, estilo, color, sub_tipo, nombre = i.split(", ")
             self.clothes.append(Prenda(tipo, estilo, color, sub_tipo, nombre))
 
-        self.clothes = logica_ropa(self.clothes, self.estilo_deseado)
+        self.clothes = logica_ropa_estilo(self.clothes, self.estilo_deseado)
 
     def modelo_trans(self, tipo):
         
@@ -142,7 +142,7 @@ class Combination2():
         return prendas_posibles
     
     def solve(self):
-
+        conjun = []
         frontera = Pila()
         #pinta = Pinta()
         pintas = Pintas()
@@ -183,23 +183,53 @@ class Combination2():
             #if not pinta.tipo_en_pinta(nodo.prenda.tipo):
             #    pinta.add_prenda(nodo.prenda)
         
-        #pintas.mostar()
+        pintas.mostar()
+        #print(pintas.pintas)
+        for combinacion in pintas.pintas:
+            zapato = combinacion.prendas[3].color
+            piernas = combinacion.prendas[2].color
+            torso = combinacion.prendas[1].color
+            cabeza = combinacion.prendas[0].color
+            #print(zapato, piernas, torso, cabeza)
         
-        best = pintas.get_first()
+            a = logica_colores(cabeza,torso,piernas,zapato,combinacion)
+            if a != None:
+                conjun.append(a)
+            conjun1 = list(set(conjun))
+            
+            
+                
+        for i,prenda in enumerate(conjun1):
+            print("prenda No {}".format(i + 1))
+            print("cabeza:", prenda.cabeza.nombre, "Color: ", prenda.cabeza.color)
+            print("torso:", prenda.torso.nombre, "Color: ", prenda.torso.color)
+            print("piernas:", prenda.piernas.nombre, "Color: ", prenda.piernas.color)
+            print("pies:", prenda.zapatos.nombre, "Color: ", prenda.zapatos.color)
+            print()
+        try:
+            best = conjun1[0]
+        except:
+            print("No hay pinta :(")
+            return None
+        
+            
 
-        for contador, pinta in enumerate(pintas.pintas):
+        for contador, pinta in enumerate(conjun1):
             lista = []
-            for prenda in pinta.prendas:
-                lista.append(prenda.sub_tipo)
+            #for prenda in pinta.prendas:
+            lista.append(pinta.cabeza.sub_tipo)
+            lista.append(pinta.torso.sub_tipo)
+            lista.append(pinta.piernas.sub_tipo)
+            lista.append(pinta.zapatos.sub_tipo)
             prob = probability(self.viento, self.nubosidad, self.lluvia, lista)
             #print(f"probabilidad de la pinta {contador+1}: {prob}")
-            pinta.add_prob(prob)
-            
+            pinta.add_prob2(prob)
+        
             if pinta.prob > best.prob:
                 best = pinta
-        
+    
         print(f"la mejor pinta, con un {best.prob*100:.0f}% tiene:")
-        best.mostrar()
+        best.mostrar2()
 
 
         
@@ -208,10 +238,10 @@ class Combination2():
 
 #viento, nubosidad, lluvia, pinta):
 
-estilo_deseado = "formal"
+estilo_deseado = "deportivo"
 viento = {"vientos": "no"}
 nubosidad = {"nubosidad": "no"}
-lluvia = {"lluvia": "si"}
+lluvia = {"lluvia": "no"}
 
 comb = Combination2(estilo_deseado, viento, nubosidad, lluvia)
 comb.solve()
