@@ -58,7 +58,7 @@ piernas = Node(DiscreteDistribution({
     "pantalon": 0.4,
     "sudadera": 0.2,
     "pantaloneta": 0.2,
-    "bermuda": 0.4
+    "bermuda": 0.2
 }), name="piernas")
 
 # Nodo pies esta condicionada por la lluvia
