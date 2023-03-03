@@ -1,3 +1,13 @@
+#Universidad Nacional de Colombia sede de La Paz
+#Integrantes:
+#Hugo Francisco Rincon Lopez - Estudiante de pregrado en Ingenería Mecatrónica.
+
+#Andres Felipe Torrijos Herazo - Estudiante de pregrado en Ingenería Mecatrónica.
+
+#Luis Angel Peña Diaz - Estudiante de pregrado en Ingenería Mecatrónica.
+
+#Wilhelm David Buitrago Garcia - Estudiante de pregrado en Ingenería Mecatrónica.
+
 from pomegranate import *
 
 # pip install pomegranate
